@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import apiConfig from "../../apiKeys";
+import Search from "../../components/search/Search";
 
 export default class Today extends Component {
   state = {
@@ -31,6 +32,7 @@ export default class Today extends Component {
     const { fullData } = this.state;
     return (
       <section>
+        <Search />
         <h1>This is 5 days</h1>;
         <article>
           {fullData.map((reading, index) => (

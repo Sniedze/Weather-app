@@ -3,8 +3,8 @@ import React from "react";
 const TodayWeather = props => {
   const {
     humidity,
-    city,
-    country,
+    searchedCity,
+    searchedCountry,
     temperature,
     weather,
     weather_icon,
@@ -27,7 +27,7 @@ const TodayWeather = props => {
     <div className="daily_data_container">
       <h2>{today()}</h2>
       <h2>
-        {city} {country}
+        {searchedCity} {searchedCountry}
       </h2>
       <h1>{temperature} &deg;C </h1>
       <h2>{weather}</h2>

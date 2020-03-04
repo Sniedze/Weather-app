@@ -1,10 +1,10 @@
 import React from "react";
 
 const Search = props => {
-  const { handleInput, handleSubmit, city, country, inputUnit } = props;
+  const { handleInput, handleSubmit, city, country } = props;
   return (
     <div className="search_container">
-      <form onSubmit={handleSubmit} method="get" className="search_container">
+      <form method="get" className="search_container">
         <input
           onChange={handleInput}
           type="text"
@@ -20,23 +20,8 @@ const Search = props => {
           defaultValue={country}
           placeholder="Country..."
         />
-        <input
-          type="radio"
-          name="units"
-          checked={inputUnit === "imperial"}
-          value="imperial"
-          onChange={handleInput}
-        />
-        Fahrenheit
-        <input
-          type="radio"
-          name="units"
-          checked={inputUnit === "metric"}
-          value="metric"
-          onChange={handleInput}
-        />
-        Celcius
-        <button>Get Weather</button>
+
+        <button onClick={handleSubmit}>Get Weather</button>
       </form>
     </div>
   );
