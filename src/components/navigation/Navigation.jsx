@@ -11,15 +11,6 @@ export default class Navigation extends Component {
         <li>
           <Link to="/daily">5 day forecast</Link>
         </li>
-        <li>
-          <Link to="/today">Today</Link>
-        </li>
-        <li>
-          <Link to="/hourly">Hourly</Link>
-        </li>
-        <li>
-          <Link to="/monthly">Monthly</Link>
-        </li>
       </ul>
     );
   }
