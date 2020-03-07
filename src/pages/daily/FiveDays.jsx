@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import apiConfig from "../../apiKeys";
+import Navigation from "../../components/navigation/Navigation";
 import Search from "../../components/search/Search";
 import FiveDayForecast from "../../components/fiveDayForecast/FiveDayForecast";
 
@@ -69,8 +70,9 @@ export default class Today extends Component {
       errorMessage
     } = this.state;
     return (
-      <React.Fragment>
+      <div className="five-days-forecast">
         <Search handleInputChange={this.onInputChange} />
+        <Navigation />
         <FiveDayForecast
           dailyData={dailyData}
           cityData={cityData}
@@ -78,7 +80,7 @@ export default class Today extends Component {
           loadingForecast={loadingForecast}
           errorMessage={errorMessage}
         />
-      </React.Fragment>
+      </div>
     );
   }
 }

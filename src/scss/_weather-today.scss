@@ -1,0 +1,46 @@
+.today-weather-page {
+  .link-container:first-child {
+    text-decoration-line: underline;
+  }
+  .today-weather-container {
+    color: #f3eaf4;
+    font-weight: normal;
+    width: 500px;
+    margin: 0 auto;
+    background-image: linear-gradient(to top, #1d4e89 20%, #84fab0 100%);
+
+    .date {
+      margin-top: 0;
+      text-align: center;
+      padding-top: 30px;
+      color: #1d4e89;
+    }
+    .weather-container {
+      padding: 40px;
+      .city {
+        margin: 0;
+      }
+      .weather {
+        margin-top: 0;
+      }
+      .icon-temperature {
+        display: flex;
+        justify-content: center;
+
+        .temperature-container {
+          font-size: 50px;
+        }
+      }
+
+      .icon-container {
+        display: flex;
+        align-items: center;
+        svg {
+          color: #f3eaf4;
+          margin-right: 20px;
+          font-size: 2.7em;
+        }
+      }
+    }
+  }
+}

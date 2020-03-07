@@ -9,8 +9,8 @@ const FiveDayForecast = props => {
   return (
     <section>
       {error && (
-        <div>
-          <h3>{errorMessage}</h3>
+        <div className="error-container">
+          <h3 className="error-message">{errorMessage}</h3>
           <h1>Please enter the city</h1>
         </div>
       )}

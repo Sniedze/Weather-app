@@ -19,7 +19,7 @@ const TodayWeather = props => {
     errorMessage
   } = props;
 
-  const iconUrl = `http://openweathermap.org/img/w/${weather_icon}.png`;
+  const iconUrl = `http://openweathermap.org/img/wn/${weather_icon}@2x.png`;
 
   const today = () => {
     let today = new Date();
@@ -31,47 +31,47 @@ const TodayWeather = props => {
   };
 
   return (
-    <div className="daily_data_container">
-      <h2>{today()}</h2>
-      <h2>
-        {searchedCity} {searchedCountry}
-      </h2>
+    <div className="today-weather-container">
+      <h3 className="date">{today()}</h3>
+
       {error && (
-        <div>
-          <h2>{errorMessage}</h2>
+        <div className="error-container">
+          <h2 className="error-message">{errorMessage}</h2>
           <h2>Please enter the city</h2>
         </div>
       )}
       {loadingWeather && <h1>Loading...</h1>}
       {searchedCity && (
-        <div>
-          <h1>
-            <span>
-              <WiThermometer />
-            </span>
-            {temperature}
-            &deg;C
-          </h1>
-          <h2>{weather}</h2>
-          <img src={iconUrl} alt="weather icon" />
-          <h3>
-            <span>
+        <div className="weather-container">
+          <h2 className="city">
+            {searchedCity} {searchedCountry}
+          </h2>
+          <h3 className="weather">{weather}</h3>
+          <div className="icon-temperature">
+            <img className="weather-icon" src={iconUrl} alt="weather icon" />
+            <h1 className="temperature-container">
+              {temperature}
+              &deg;C
+            </h1>
+          </div>
+
+          <div className="measurement-container">
+            <div className="icon-container">
               <WiBarometer />
-            </span>
-            {pressure}
-          </h3>
-          <h3>
-            <span>
+
+              <h2>{pressure}</h2>
+            </div>
+            <div className="icon-container">
               <WiHumidity />
-            </span>
-            {humidity}
-          </h3>
-          <h3>
-            <span>
+
+              <h2>{humidity}</h2>
+            </div>
+            <div className="icon-container">
               <WiStrongWind />
-            </span>
-            {wind}
-          </h3>
+
+              <h2>{wind}</h2>
+            </div>
+          </div>
         </div>
       )}
     </div>

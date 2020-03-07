@@ -1,0 +1,60 @@
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+.search_container {
+  background-color: #1d4e89;
+  padding: 15px 0;
+  form {
+    padding: 0 24%;
+    display: flex;
+    justify-content: space-around;
+
+    input,
+    button {
+      border-radius: 50px;
+      height: 35px;
+      border: none;
+      font-size: 1.2em;
+    }
+    button {
+      background-color: #189396;
+      width: 150px;
+      color: #f4faff;
+      cursor: pointer;
+      &:hover {
+        background-color: #ffd5ff;
+        color: #4f646f;
+      }
+    }
+    input {
+      padding-left: 30px;
+      background-color: #f4faff;
+
+      @include input-placeholder {
+        color: #4f646f;
+      }
+    }
+    input:focus {
+      border: 2px solid #b47eb3;
+      @include input-placeholder {
+        color: #99b0bd;
+        font-size: 16px;
+      }
+    }
+  }
+}

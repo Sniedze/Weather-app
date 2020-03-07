@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 export default class Navigation extends Component {
   render() {
     return (
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/daily">5 day forecast</Link>
-        </li>
-      </ul>
+      <nav>
+        <ul className="menu">
+          <div className="link-container">
+            <Link to="/">TODAY</Link>
+          </div>
+          <div className="link-container">
+            <Link to="/daily">5 DAYS</Link>
+          </div>
+        </ul>
+      </nav>
     );
   }
 }

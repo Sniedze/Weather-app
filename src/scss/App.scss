@@ -1,0 +1,20 @@
+@import "search";
+@import "navigation";
+@import "weather-today";
+@import "forecast";
+
+html,
+body {
+  margin: 0;
+  background-color: #dee7e7;
+}
+
+.App {
+  font-family: Expletus Sans;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+}

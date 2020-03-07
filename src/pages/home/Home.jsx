@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import apiConfig from "../../apiKeys";
+import Navigation from "../../components/navigation/Navigation";
 import TodayWeather from "../../components/todayWeather/TodayWeather";
 import Search from "../../components/search/Search";
 
@@ -47,12 +48,12 @@ export default class Home extends Component {
           this.setState({
             searchedCity: weatherData.name,
             searchedCountry: weatherData.sys.country,
-            temperature: weatherData.main.temp,
+            temperature: Math.round(weatherData.main.temp),
             weather: weatherData.weather[0].description,
             weather_icon: weatherData.weather[0].icon,
             pressure: weatherData.main.pressure,
             humidity: weatherData.main.humidity,
-            wind: weatherData.wind.speed,
+            wind: Math.round(weatherData.wind.speed, 1).toFixed(1),
             loadingWeather: false,
             error: false
           });
@@ -83,8 +84,9 @@ export default class Home extends Component {
       errorMessage
     } = this.state;
     return (
-      <div>
+      <div className="today-weather-page">
         <Search handleInputChange={this.onNewInput} />
+        <Navigation />
         <TodayWeather
           searchedCity={searchedCity}
           searchedCountry={searchedCountry}
