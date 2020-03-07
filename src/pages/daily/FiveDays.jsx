@@ -1,49 +1,84 @@
 import React, { Component } from "react";
 import apiConfig from "../../apiKeys";
 import Search from "../../components/search/Search";
+import FiveDayForecast from "../../components/fiveDayForecast/FiveDayForecast";
 
 export default class Today extends Component {
   state = {
-    fullData: [],
-    todayData: []
+    cityData: [],
+    dailyData: [],
+    city: "",
+    country: "",
+    loadingForecast: true,
+    error: false,
+    errorMessage: ""
   };
 
-  componentDidMount = () => {
-    const weatherURL = `http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city},lv&units=metric&APPID=${apiConfig.owmKey}`;
-    if (this.state.city) {
-      fetch(weatherURL)
-        .then(res => res.json())
-        .then(data => {
-          const dailyData = data.list.filter(reading =>
+  onInputChange = (city, country) => {
+    this.setState({ city, country });
+    localStorage.setItem("storedCity", city);
+    localStorage.setItem("storedCountry", country);
+  };
+
+  async componentDidMount() {
+    const storedCity = localStorage.getItem("storedCity");
+    const storedCountry = localStorage.getItem("storedCountry");
+    if (storedCity.length === 0) {
+      this.setState({ error: true, loadingForecast: false });
+    }
+    const forecastURL = `http://api.openweathermap.org/data/2.5/forecast?q=${storedCity},${storedCountry}&units=metric&APPID=${apiConfig.owmKey}`;
+    if (storedCity) {
+      fetch(forecastURL)
+        .then(async response => {
+          const data = await response.json();
+
+          if (!response.ok) {
+            const err = (data && data.message) || response.statusText;
+            return Promise.reject(err);
+          }
+          const dailyData = await data.list.filter(reading =>
             reading.dt_txt.includes("18:00:00")
           );
           this.setState(
             {
-              fullData: data.list,
-              dailyData: dailyData
+              cityData: data.city,
+              dailyData,
+              loadingForecast: false,
+              error: false
             },
             () => console.log(this.state.dailyData)
           );
+        })
+        .catch(err => {
+          this.setState({
+            error: true,
+            loadingForecast: false,
+            errorMessage: err
+          });
+          console.log(err.message);
         });
     }
-  };
+  }
 
   render() {
-    const { fullData } = this.state;
+    const {
+      dailyData,
+      cityData,
+      error,
+      loadingForecast,
+      errorMessage
+    } = this.state;
     return (
-      <section>
-        <Search />
-        <h1>This is 5 days</h1>;
-        <article>
-          {fullData.map((reading, index) => (
-            <li key={index}>
-              {reading.main.temp}
-              {reading.weather[0].description}
-            </li>
-          ))}
-        </article>
-        }}
-      </section>
+      <React.Fragment>
+        <Search handleInputChange={this.onInputChange} />
+        <FiveDayForecast
+          dailyData={dailyData}
+          cityData={cityData}
+          error={error}
+          loadingForecast={loadingForecast}
+          errorMessage={errorMessage}
+        />
+      </React.Fragment>
     );
   }
 }

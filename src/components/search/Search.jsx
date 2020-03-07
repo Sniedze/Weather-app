@@ -6,13 +6,23 @@ export default class Search extends Component {
     country: ""
   };
 
+  onInput = ev => {
+    ev.preventDefault();
+    this.setState({ [ev.target.name]: ev.target.value });
+  };
+
+  onFormSubmit = () => {
+    const { city, country } = this.state;
+    this.props.handleInputChange(city, country);
+  };
+
   render() {
-    const { handleInput, handleSubmit, city, country } = this.props;
+    const { city, country } = this.state;
     return (
       <div className="search_container">
         <form method="get" className="search_container">
           <input
-            onChange={handleInput}
+            onChange={this.onInput}
             type="text"
             id="city"
             name="city"
@@ -20,14 +30,14 @@ export default class Search extends Component {
             placeholder="City..."
           />
           <input
-            onChange={handleInput}
+            onChange={this.handleInput}
             type="text"
             name="country"
             defaultValue={country}
             placeholder="Country..."
           />
 
-          <button onClick={handleSubmit}>Get Weather</button>
+          <button onClick={this.onFormSubmit}>Get Weather</button>
         </form>
       </div>
     );

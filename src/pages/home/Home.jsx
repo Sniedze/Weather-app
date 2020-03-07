@@ -14,52 +14,57 @@ export default class Home extends Component {
     pressure: "",
     wind: "",
     loadingWeather: true,
-    loadingForecast: true,
     error: false,
+    errorMessage: "",
     city: "",
     country: ""
   };
 
-  onInput = ev => {
-    ev.preventDefault();
-    this.setState({ [ev.target.name]: ev.target.value });
-  };
-
-  onFormSubmit = ev => {
-    const { city, country } = this.state;
-    const searchedCity = city;
-    localStorage.setItem("storedCity", searchedCity);
+  onNewInput = (city, country) => {
+    localStorage.setItem("storedCity", city);
     localStorage.setItem("storedCountry", country);
-
-    console.log(this.state.city);
-    //console.log(localStorage.getItem("storedCity"));
+    this.setState({ city, country });
   };
 
   async componentDidMount() {
-    const { city, country } = this.state;
-    if (localStorage.getItem("storedCity")) {
-      const storedCity = localStorage.getItem("storedCity");
-      const storedCountry = localStorage.getItem("storedCountry");
-      console.log(city);
+    const storedCity = localStorage.getItem("storedCity");
+    const storedCountry = localStorage.getItem("storedCountry");
 
+    if (storedCity.length === 0) {
+      this.setState({ error: true, loadingWeather: false });
+    }
+    if (storedCity) {
       const weatherURL = `http://api.openweathermap.org/data/2.5/weather?q=${storedCity},${storedCountry}&units=metric&APPID=${apiConfig.owmKey}`;
 
-      const res = await fetch(weatherURL);
-      const weatherData = await res.json();
-      console.log(weatherData);
-      this.setState({
-        searchedCity: weatherData.name,
-        searchedCountry: weatherData.sys.country,
-        temperature: weatherData.main.temp,
-        weather: weatherData.weather[0].description,
-        weather_icon: weatherData.weather[0].icon,
-        pressure: weatherData.main.pressure,
-        humidity: weatherData.main.humidity,
-        wind: weatherData.wind.speed,
-        loadingWeather: false
-        // city: storedCity,
-        // country: storedCountry
-      });
+      fetch(weatherURL)
+        .then(async response => {
+          const weatherData = await response.json();
+          if (!response.ok) {
+            const err =
+              (weatherData && weatherData.message) || response.statusText;
+            return Promise.reject(err);
+          }
+          this.setState({
+            searchedCity: weatherData.name,
+            searchedCountry: weatherData.sys.country,
+            temperature: weatherData.main.temp,
+            weather: weatherData.weather[0].description,
+            weather_icon: weatherData.weather[0].icon,
+            pressure: weatherData.main.pressure,
+            humidity: weatherData.main.humidity,
+            wind: weatherData.wind.speed,
+            loadingWeather: false,
+            error: false
+          });
+        })
+        .catch(err => {
+          this.setState({
+            error: true,
+            loadingWeather: false,
+            errorMessage: err
+          });
+          console.log(err.message);
+        });
     }
   }
 
@@ -72,16 +77,14 @@ export default class Home extends Component {
       weather_icon,
       pressure,
       humidity,
-      wind
+      wind,
+      loadingWeather,
+      error,
+      errorMessage
     } = this.state;
     return (
       <div>
-        <Search
-          handleSubmit={this.onFormSubmit}
-          handleInput={this.onInput}
-          city={this.state.city}
-          country={this.state.country}
-        />
+        <Search handleInputChange={this.onNewInput} />
         <TodayWeather
           searchedCity={searchedCity}
           searchedCountry={searchedCountry}
@@ -91,6 +94,9 @@ export default class Home extends Component {
           pressure={pressure}
           humidity={humidity}
           wind={wind}
+          loadingWeather={loadingWeather}
+          error={error}
+          errorMessage={errorMessage}
         />
       </div>
     );
