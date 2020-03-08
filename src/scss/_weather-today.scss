@@ -1,34 +1,58 @@
 .today-weather-page {
-  .link-container:first-child {
-    text-decoration-line: underline;
+  background-image: linear-gradient(to top, #64b3f4 0%, #c2e59c 100%);
+  height: 100vh;
+  .home-link-container {
+    background-color: #1d4e89;
+
+    .home-link {
+      color: #f3eaf4;
+    }
   }
+
   .today-weather-container {
-    color: #f3eaf4;
+    color: white;
     font-weight: normal;
     width: 500px;
     margin: 0 auto;
-    background-image: linear-gradient(to top, #1d4e89 20%, #84fab0 100%);
+    border: 1px solid #f3eaf4;
+    border-radius: 20px;
+    background-color: rgba(243, 234, 244, 0.1);
 
     .date {
-      margin-top: 0;
+      margin: 0;
       text-align: center;
       padding-top: 30px;
       color: #1d4e89;
     }
+    .error-container {
+      text-align: center;
+      padding: 20px;
+      .error-message {
+        color: #ec6e4c;
+      }
+    }
+    .loader-container {
+      width: 100px;
+      margin: 0 auto;
+    }
+
     .weather-container {
-      padding: 40px;
+      padding: 15px 40px;
       .city {
         margin: 0;
+        color: #ec6e4c;
+        font-size: 2em;
       }
       .weather {
         margin-top: 0;
+        font-size: 1.5em;
       }
       .icon-temperature {
         display: flex;
         justify-content: center;
 
-        .temperature-container {
-          font-size: 50px;
+        h1 {
+          font-size: 2em;
         }
       }
 
@@ -36,7 +60,7 @@
         display: flex;
         align-items: center;
         svg {
-          color: #f3eaf4;
+          color: white;
           margin-right: 20px;
           font-size: 2.7em;
         }

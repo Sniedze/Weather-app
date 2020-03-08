@@ -32,13 +32,14 @@
       font-size: 1.2em;
     }
     button {
-      background-color: #189396;
+      background-color: #ec6e4c;
+
       width: 150px;
       color: #f4faff;
       cursor: pointer;
       &:hover {
-        background-color: #ffd5ff;
-        color: #4f646f;
+        background-color: #189396;
+        color: #f4faff;
       }
     }
     input {
@@ -50,7 +51,6 @@
       }
     }
     input:focus {
-      border: 2px solid #b47eb3;
       @include input-placeholder {
         color: #99b0bd;
         font-size: 16px;

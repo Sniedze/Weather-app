@@ -1,7 +1,8 @@
 import React from "react";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import { WiHumidity } from "react-icons/wi";
 import { WiBarometer } from "react-icons/wi";
-import { WiThermometer } from "react-icons/wi";
 import { WiStrongWind } from "react-icons/wi";
 
 const TodayWeather = props => {
@@ -40,7 +41,11 @@ const TodayWeather = props => {
           <h2>Please enter the city</h2>
         </div>
       )}
-      {loadingWeather && <h1>Loading...</h1>}
+      {loadingWeather && (
+        <div className="loader-container">
+          <Loader type="Puff" color="#1d4e89" height={100} width={100} />
+        </div>
+      )}
       {searchedCity && (
         <div className="weather-container">
           <h2 className="city">

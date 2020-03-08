@@ -6,11 +6,16 @@ export default class Navigation extends Component {
     return (
       <nav>
         <ul className="menu">
-          <div className="link-container">
-            <Link to="/">TODAY</Link>
+          <div className="home-link-container link-container">
+            <Link className="home-link" to="/">
+              TODAY
+            </Link>
           </div>
-          <div className="link-container">
-            <Link to="/daily">5 DAYS</Link>
+
+          <div className="forecast-link-container link-container">
+            <Link className="forecast-link" to="/daily">
+              5 DAYS
+            </Link>
           </div>
         </ul>
       </nav>

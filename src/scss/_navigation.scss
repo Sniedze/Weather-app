@@ -1,15 +1,26 @@
 nav {
+  border-bottom: 1px solid #1d4e89;
+  margin-bottom: 20px;
   .menu {
     width: 300px;
     padding: 20px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
+    .link-container {
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      border: 2px solid #1d4e89;
+      border-radius: 20px;
+      text-align: center;
 
-    a {
-      text-decoration: none;
-      font-size: 1.2em;
-      color: #1d4e89;
+      a {
+        text-decoration: none;
+        font-size: 1.2em;
+        color: #1d4e89;
+        vertical-align: middle;
+      }
     }
   }
 }
