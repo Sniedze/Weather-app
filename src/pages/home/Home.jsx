@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import apiConfig from "../../apiKeys";
-import Navigation from "../../components/navigation/Navigation";
+import apiConfig from "../../apiKey";
 import TodayWeather from "../../components/todayWeather/TodayWeather";
 import Search from "../../components/search/Search";
 
@@ -19,12 +18,6 @@ export default class Home extends Component {
     errorMessage: "",
     city: "",
     country: ""
-  };
-
-  onNewInput = (city, country) => {
-    localStorage.setItem("storedCity", city);
-    localStorage.setItem("storedCountry", country);
-    this.setState({ city, country });
   };
 
   async componentDidMount() {
@@ -68,6 +61,11 @@ export default class Home extends Component {
         });
     }
   }
+  onNewInput = (city, country) => {
+    localStorage.setItem("storedCity", city);
+    localStorage.setItem("storedCountry", country);
+    this.setState({ city, country });
+  };
 
   render() {
     const {
@@ -86,7 +84,6 @@ export default class Home extends Component {
     return (
       <div className="today-weather-page">
         <Search handleInputChange={this.onNewInput} />
-        <Navigation />
         <TodayWeather
           searchedCity={searchedCity}
           searchedCountry={searchedCountry}

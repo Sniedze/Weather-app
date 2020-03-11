@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import apiConfig from "../../apiKeys";
-import Navigation from "../../components/navigation/Navigation";
+import apiConfig from "../../apiKey";
 import Search from "../../components/search/Search";
 import FiveDayForecast from "../../components/fiveDayForecast/FiveDayForecast";
 
@@ -13,12 +12,6 @@ export default class Today extends Component {
     loadingForecast: true,
     error: false,
     errorMessage: ""
-  };
-
-  onInputChange = (city, country) => {
-    this.setState({ city, country });
-    localStorage.setItem("storedCity", city);
-    localStorage.setItem("storedCountry", country);
   };
 
   async componentDidMount() {
@@ -60,6 +53,11 @@ export default class Today extends Component {
         });
     }
   }
+  onInputChange = (city, country) => {
+    this.setState({ city, country });
+    localStorage.setItem("storedCity", city);
+    localStorage.setItem("storedCountry", country);
+  };
 
   render() {
     const {
@@ -72,7 +70,6 @@ export default class Today extends Component {
     return (
       <div className="five-days-forecast">
         <Search handleInputChange={this.onInputChange} />
-        <Navigation />
         <FiveDayForecast
           dailyData={dailyData}
           cityData={cityData}

@@ -1,23 +1,17 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default class Navigation extends Component {
   render() {
     return (
-      <nav>
-        <ul className="menu">
-          <div className="home-link-container link-container">
-            <Link className="home-link" to="/">
-              TODAY
-            </Link>
-          </div>
+      <nav className="menu">
+        <NavLink activeClassName="active" to="/" exact>
+          TODAY
+        </NavLink>
 
-          <div className="forecast-link-container link-container">
-            <Link className="forecast-link" to="/daily">
-              5 DAYS
-            </Link>
-          </div>
-        </ul>
+        <NavLink activeClassName="active" to="/daily">
+          5 DAYS
+        </NavLink>
       </nav>
     );
   }

@@ -6,11 +6,14 @@
 html,
 body {
   margin: 0;
+  padding: 0;
   background-color: #dee7e7;
 }
 
-.App {
+.App,
+#root {
   font-family: Expletus Sans;
+  height: 100vh;
 }
 h1,
 h2,
