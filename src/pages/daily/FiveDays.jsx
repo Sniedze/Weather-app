@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import apiConfig from "../../apiKey";
+import apiConfig from "../../api-key";
 import Search from "../../components/search/Search";
 import FiveDayForecast from "../../components/fiveDayForecast/FiveDayForecast";
 

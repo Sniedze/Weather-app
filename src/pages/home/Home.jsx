@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import apiConfig from "../../apiKey";
+import apiConfig from "../../api-key";
 import TodayWeather from "../../components/todayWeather/TodayWeather";
 import Search from "../../components/search/Search";
 
