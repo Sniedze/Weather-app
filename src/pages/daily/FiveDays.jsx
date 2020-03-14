@@ -33,15 +33,12 @@ export default class Today extends Component {
           const dailyData = await data.list.filter(reading =>
             reading.dt_txt.includes("18:00:00")
           );
-          this.setState(
-            {
-              cityData: data.city,
-              dailyData,
-              loadingForecast: false,
-              error: false
-            },
-            () => console.log(this.state.dailyData)
-          );
+          this.setState({
+            cityData: data.city,
+            dailyData,
+            loadingForecast: false,
+            error: false
+          });
         })
         .catch(err => {
           this.setState({
@@ -49,7 +46,6 @@ export default class Today extends Component {
             loadingForecast: false,
             errorMessage: err
           });
-          console.log(err.message);
         });
     }
   }

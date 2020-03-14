@@ -57,7 +57,6 @@ export default class Home extends Component {
             loadingWeather: false,
             errorMessage: err
           });
-          console.log(err.message);
         });
     }
   }
