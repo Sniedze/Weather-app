@@ -7,14 +7,12 @@ export default class Today extends Component {
   state = {
     cityData: [],
     dailyData: [],
-    city: "",
-    country: "",
     loadingForecast: true,
     error: false,
     errorMessage: ""
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const storedCity = localStorage.getItem("storedCity");
     const storedCountry = localStorage.getItem("storedCountry");
     if (storedCity.length === 0) {
@@ -50,7 +48,6 @@ export default class Today extends Component {
     }
   }
   onInputChange = (city, country) => {
-    this.setState({ city, country });
     localStorage.setItem("storedCity", city);
     localStorage.setItem("storedCountry", country);
   };

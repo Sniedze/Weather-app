@@ -6,9 +6,6 @@ import FiveDays from "./pages/daily/FiveDays";
 import Lost from "./pages/lost/Lost";
 import Navigation from "./components/navigation/Navigation";
 
-//import { FaBeer } from "react-icons/fa";
-//import { WiAlien } from "react-icons/wi";
-
 export default class App extends Component {
   render() {
     return (

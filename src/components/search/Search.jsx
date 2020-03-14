@@ -20,11 +20,10 @@ export default class Search extends Component {
     const { city, country } = this.state;
     return (
       <div className="search_container">
-        <form method="get" className="search_container">
+        <form method="get">
           <input
             onChange={this.onInput}
             type="text"
-            id="city"
             name="city"
             defaultValue={city}
             placeholder="City..."

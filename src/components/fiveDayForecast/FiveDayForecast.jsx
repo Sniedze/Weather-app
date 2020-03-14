@@ -27,44 +27,44 @@ const FiveDayForecast = props => {
             </span>
           </h1>
           <div className="article-container">
-            {dailyData.map((reading, index) => (
+            {dailyData.map((forecast, index) => (
               <article key={index}>
-                <h1>{reading.dt_txt.split("", 10)}</h1>
+                <h1>{forecast.dt_txt.split("", 10)}</h1>
                 <div className="icon-container">
                   <img
-                    src={`http://openweathermap.org/img/wn/${reading.weather[0].icon}@2x.png`}
-                    alt=""
+                    src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`}
+                    alt="Weather"
                   />
-                  <h2>{Math.round(reading.main.temp)} &deg;C</h2>
+                  <h2>{Math.round(forecast.main.temp)} &deg;C</h2>
                 </div>
 
-                <h2 className="weather">{reading.weather[0].description}</h2>
+                <h2 className="weather">{forecast.weather[0].description}</h2>
                 <table className="measurement-container">
                   <tbody>
                     <tr>
                       <td>Feels like</td>
-                      <td>{Math.round(reading.main.feels_like)} &deg;C</td>
+                      <td>{Math.round(forecast.main.feels_like)} &deg;C</td>
                     </tr>
                     <tr>
                       <td>Min temp.</td>
-                      <td>{Math.round(reading.main.temp_min)} &deg;C</td>
+                      <td>{Math.round(forecast.main.temp_min)} &deg;C</td>
                     </tr>
                     <tr>
                       <td>Max temp.</td>
-                      <td>{Math.round(reading.main.temp_max)} &deg;C</td>
+                      <td>{Math.round(forecast.main.temp_max)} &deg;C</td>
                     </tr>
                     <tr>
                       <td>Pressure</td>
-                      <td>{reading.main.pressure} hPa</td>
+                      <td>{forecast.main.pressure} hPa</td>
                     </tr>
                     <tr>
                       <td>Humidity</td>
-                      <td>{reading.main.humidity} %</td>
+                      <td>{forecast.main.humidity} %</td>
                     </tr>
                     <tr>
                       <td>Wind gusts</td>
                       <td>
-                        {Math.round(reading.wind.speed, 1).toFixed(1)} m/s
+                        {Math.round(forecast.wind.speed, 1).toFixed(1)} m/s
                       </td>
                     </tr>
                   </tbody>

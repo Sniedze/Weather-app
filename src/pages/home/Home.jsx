@@ -15,12 +15,10 @@ export default class Home extends Component {
     wind: "",
     loadingWeather: true,
     error: false,
-    errorMessage: "",
-    city: "",
-    country: ""
+    errorMessage: ""
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const storedCity = localStorage.getItem("storedCity");
     const storedCountry = localStorage.getItem("storedCountry");
 
@@ -63,7 +61,6 @@ export default class Home extends Component {
   onNewInput = (city, country) => {
     localStorage.setItem("storedCity", city);
     localStorage.setItem("storedCountry", country);
-    this.setState({ city, country });
   };
 
   render() {
